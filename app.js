@@ -15,4 +15,5 @@ var robinhood = Robinhood({
       console.log(body);
     });
 
-  });
+  }
+);
