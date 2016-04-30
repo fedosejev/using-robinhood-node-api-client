@@ -19,3 +19,7 @@ node app
 ## Learn more
 
 https://github.com/aurbano/robinhood-node
+
+## Alternative
+
+https://github.com/markalfred/robinhood-to-csv
