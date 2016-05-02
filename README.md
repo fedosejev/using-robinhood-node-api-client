@@ -1,5 +1,7 @@
 # Testing unofficial Robinhood API Node client
 
+Get Robinhood orders, convert them to CSV and write them to a file.
+
 ## 1. Install
 
 ```
