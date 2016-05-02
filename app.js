@@ -4,11 +4,9 @@ var request = require('request');
 var prompt = require('prompt');
 var Robinhood = require('robinhood');
 
-var config;
+getConfig(getData);
 
-readConfigFile(getData);
-
-function readConfigFile(done) {
+function getConfig(done) {
   fs.readFile('./config.json', 'utf8', function (error, data) {
     if (error) {
       askForUsernameAndPassword(done);
@@ -17,12 +15,12 @@ function readConfigFile(done) {
 
     data = JSON.parse(data);
 
-    config = {
+    var config = {
       username: data.username,
       password: data.password
     };
 
-    done();
+    done(config);
 
   });
 }
@@ -49,16 +47,16 @@ function askForUsernameAndPassword(done) {
   prompt.start();
   prompt.get(schema, function (error, result) {
 
-    config = {
+    var config = {
       username: result.username,
       password: result.password
     };
 
-    done();
+    done(config);
   });
 }
 
-function getData() {
+function getData(config) {
 
   console.log('🔥  Working...');
 
@@ -75,16 +73,16 @@ function getData() {
       
         var results = body.results;
 
-        var results = [
-          {
-            test: 1,
-            instrument: 'https://api.robinhood.com/instruments/438867e8-77aa-4bce-b342-46d2f1620223/'
-          },
-          {
-            test: 2,
-            instrument: 'https://api.robinhood.com/instruments/438867e8-77aa-4bce-b342-46d2f1620223/'
-          }
-        ];
+        // var results = [
+        //   {
+        //     test: 1,
+        //     instrument: 'https://api.robinhood.com/instruments/438867e8-77aa-4bce-b342-46d2f1620223/'
+        //   },
+        //   {
+        //     test: 2,
+        //     instrument: 'https://api.robinhood.com/instruments/438867e8-77aa-4bce-b342-46d2f1620223/'
+        //   }
+        // ];
 
         Rx.Observable
         .from(results)
