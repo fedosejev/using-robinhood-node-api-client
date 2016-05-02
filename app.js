@@ -155,6 +155,7 @@ function parseData(data) {
       return;
     }
 
+    console.log('👉 Success: your CSV file is in here ' + __dirname + '/results/robinhood_data.csv');
     console.log('👉 🎤  Mic drop! ');
   });
 }
