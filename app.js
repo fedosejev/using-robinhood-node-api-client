@@ -39,7 +39,11 @@ var robinhood = Robinhood({
               observer.onError(error);
             }
 
-            result.symbol = JSON.parse(ajaxBody).symbol;
+            try {
+              result.symbol = JSON.parse(ajaxBody).symbol;
+            } catch (error) {
+              observer.onError(error);
+            }
 
             observer.onNext(result);
             observer.onCompleted();
