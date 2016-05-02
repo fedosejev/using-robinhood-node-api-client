@@ -13,9 +13,11 @@ var robinhood = Robinhood({
         process.exit(1);
       }
 
-      fs.writeFileSync('./raw_robinhood_data.json', body);
+      fs.writeFileSync('./raw_robinhood_data.json', JSON.stringify(body));
 
       parseData(body.results);
+    });
+
   }
 );
 
