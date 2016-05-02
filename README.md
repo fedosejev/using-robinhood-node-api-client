@@ -28,6 +28,6 @@ There you will find 2 files:
 
 https://github.com/aurbano/robinhood-node
 
-## Alternative
+## Inspired by
 
 https://github.com/markalfred/robinhood-to-csv

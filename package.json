@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/fedosejev/using-robinhood-node-api-client#readme",
   "dependencies": {
+    "prompt": "^1.0.0",
     "request": "^2.72.0",
     "robinhood": "^0.3.1",
     "rx": "^4.1.0"
