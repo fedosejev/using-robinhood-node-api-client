@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/fedosejev/using-robinhood-node-api-client#readme",
   "dependencies": {
-    "robinhood": "^0.3.1"
+    "jquery": "^2.2.3",
+    "robinhood": "^0.3.1",
+    "rx": "^4.1.0"
   }
 }

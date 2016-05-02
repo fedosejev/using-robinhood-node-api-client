@@ -1,4 +1,6 @@
 var fs = require('fs');
+var Rx = require('rx');
+var jquery = require('jquery');
 var Robinhood = require('robinhood');
 var CONFIG = require('./config.json');
 
@@ -12,10 +14,33 @@ var robinhood = Robinhood({
         console.error(error);
         process.exit(1);
       }
+    
+      var results = body.results;
 
-      fs.writeFileSync('./raw_robinhood_data.json', JSON.stringify(body, null, 4));
+      Rx.Observable
+      .from(results)
+      .flatMap(function (result) {
+        return Rx.Observable.create(function (observer) {
 
-      parseData(body.results);
+          ajax
+            .get(result.instrument)
+            .done(function (response) {
+              
+              result.symbol = response.symbol;
+
+              observer.onNext(result);
+              observer.onCompleted();
+            
+            });
+        });
+      })
+      .subscribe(function onCompleted(event) {
+
+        fs.writeFileSync('./raw_robinhood_data.json', JSON.stringify(event, null, 4));
+
+        parseData(event);
+
+      });
     });
 
   }
@@ -51,6 +76,6 @@ function parseData(data) {
       return;
     }
 
-    console.log('All done!');
+    console.log('👉 Mic drop! 🎤');
   });
 }
