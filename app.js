@@ -25,6 +25,7 @@ var robinhood = Robinhood({
           request(result.instrument, function (error, ajaxResponse, ajaxBody) {
 
             if (error) {
+              observer.onError(error);
               console.error(error);
               process.exit(1);
             }
@@ -33,11 +34,12 @@ var robinhood = Robinhood({
 
             observer.onNext(result);
             observer.onCompleted();
-            
+
           });
 
         });
       })
+      .toArray()
       .subscribe(function onCompleted(event) {
 
         fs.writeFileSync('./raw_robinhood_data.json', JSON.stringify(event, null, 4));
