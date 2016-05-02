@@ -1,6 +1,6 @@
 var fs = require('fs');
 var Rx = require('rx');
-var jquery = require('jquery');
+var request = require('request');
 var Robinhood = require('robinhood');
 var CONFIG = require('./config.json');
 
@@ -22,16 +22,20 @@ var robinhood = Robinhood({
       .flatMap(function (result) {
         return Rx.Observable.create(function (observer) {
 
-          jquery
-            .get(result.instrument)
-            .done(function (response) {
-              
-              result.symbol = response.symbol;
+          request(result.instrument, function (error, ajaxResponse, ajaxBody) {
 
-              observer.onNext(result);
-              observer.onCompleted();
+            if (error) {
+              console.error(error);
+              process.exit(1);
+            }
+
+            result.symbol = ajaxResponse.symbol;
+
+            observer.onNext(result);
+            observer.onCompleted();
             
-            });
+          });
+
         });
       })
       .subscribe(function onCompleted(event) {
