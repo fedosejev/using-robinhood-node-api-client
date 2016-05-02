@@ -17,6 +17,17 @@ var robinhood = Robinhood({
     
       var results = body.results;
 
+      // var results = [
+      //   {
+      //     test: 1,
+      //     instrument: 'https://api.robinhood.com/instruments/438867e8-77aa-4bce-b342-46d2f1620223/'
+      //   },
+      //   {
+      //     test: 2,
+      //     instrument: 'https://api.robinhood.com/instruments/438867e8-77aa-4bce-b342-46d2f1620223/'
+      //   }
+      // ];
+
       Rx.Observable
       .from(results)
       .flatMap(function (result) {
@@ -26,8 +37,6 @@ var robinhood = Robinhood({
 
             if (error) {
               observer.onError(error);
-              console.error(error);
-              process.exit(1);
             }
 
             result.symbol = JSON.parse(ajaxBody).symbol;
@@ -40,13 +49,15 @@ var robinhood = Robinhood({
         });
       })
       .toArray()
-      .subscribe(function onCompleted(event) {
+      .subscribe(
+        function onCompleted(event) {
 
-        fs.writeFileSync('./raw_robinhood_data.json', JSON.stringify(event, null, 4));
+          fs.writeFileSync('./raw_robinhood_data.json', JSON.stringify(event, null, 4));
 
-        parseData(event);
+          parseData(event);
 
-      });
+        }
+      );
     });
 
   }
@@ -82,6 +93,6 @@ function parseData(data) {
       return;
     }
 
-    console.log('👉 Mic drop! 🎤');
+    console.log('👉 🎤  Mic drop! ');
   });
 }
