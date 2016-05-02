@@ -8,17 +8,13 @@ Get Robinhood orders, convert them to CSV and write them to a file.
 npm install
 ```
 
-## 2. Change `config.json`
-
-Put your Robinhood app username and password.
-
-## 3. Run
+## 2. Run
 
 ```
 node app
 ```
 
-## 4. Check `./results` directory
+## 3. Check `./results` directory
 
 There you will find 2 files:
 + `robinhood_data.csv` - CSV file that you can now drop to http://stocktrading.report and see your stock trading results.
