@@ -29,7 +29,7 @@ var robinhood = Robinhood({
               process.exit(1);
             }
 
-            result.symbol = ajaxResponse.symbol;
+            result.symbol = ajaxBody.symbol;
 
             observer.onNext(result);
             observer.onCompleted();
