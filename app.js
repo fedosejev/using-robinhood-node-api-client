@@ -30,7 +30,7 @@ var robinhood = Robinhood({
               process.exit(1);
             }
 
-            result.symbol = ajaxBody.symbol;
+            result.symbol = JSON.parse(ajaxBody).symbol;
 
             observer.onNext(result);
             observer.onCompleted();
