@@ -62,8 +62,6 @@ function getData() {
 
   console.log('🔥  Working...');
 
-  console.log(config);
-
   var robinhood = Robinhood({
       username: config.username,
       password: config.password
@@ -155,7 +153,6 @@ function parseData(data) {
       return;
     }
 
-    console.log('👉 Success: your CSV file is in here ' + __dirname + '/results/robinhood_data.csv');
-    console.log('👉 🎤  Mic drop! ');
+    console.log('👉  Success! Your CSV file is in here: ' + __dirname + '/results/robinhood_data.csv');
   });
 }
