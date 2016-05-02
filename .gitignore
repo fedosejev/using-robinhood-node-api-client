@@ -1,5 +1,5 @@
 node_modules
 .DS_Store
 
-raw_robinhood_data.json
-robinhood_data.csv
+results/raw_robinhood_data.json
+results/robinhood_data.csv

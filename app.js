@@ -56,7 +56,7 @@ var robinhood = Robinhood({
       .subscribe(
         function onCompleted(event) {
 
-          fs.writeFileSync('./raw_robinhood_data.json', JSON.stringify(event, null, 4));
+          fs.writeFileSync('./results/raw_robinhood_data.json', JSON.stringify(event, null, 4));
 
           parseData(event);
 
@@ -91,7 +91,7 @@ function parseData(data) {
 
   csv = csv + '\n' + convertObjectsToCsv(data);
 
-  fs.writeFile('./robinhood_data.csv', csv, function (error) {
+  fs.writeFile('./results/robinhood_data.csv', csv, function (error) {
     if (error) {
       console.error(error);
       return;
