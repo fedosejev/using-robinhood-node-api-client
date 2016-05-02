@@ -30,28 +30,7 @@ var robinhood = Robinhood({
 
       Rx.Observable
       .from(results)
-      .flatMap(function (result) {
-        return Rx.Observable.create(function (observer) {
-
-          request(result.instrument, function (error, ajaxResponse, ajaxBody) {
-
-            if (error) {
-              observer.onError(error);
-            }
-
-            try {
-              result.symbol = JSON.parse(ajaxBody).symbol;
-            } catch (error) {
-              observer.onError(error);
-            }
-
-            observer.onNext(result);
-            observer.onCompleted();
-
-          });
-
-        });
-      })
+      .flatMap(getSymbol)
       .toArray()
       .subscribe(
         function onCompleted(event) {
@@ -66,6 +45,29 @@ var robinhood = Robinhood({
 
   }
 );
+
+function getSymbol(trade) {
+  return Rx.Observable.create(function (observer) {
+
+    request(trade.instrument, function (error, ajaxResponse, ajaxBody) {
+
+      if (error) {
+        observer.onError(error);
+      }
+
+      try {
+        trade.symbol = JSON.parse(ajaxBody).symbol;
+      } catch (error) {
+        observer.onError(error);
+      }
+
+      observer.onNext(trade);
+      observer.onCompleted();
+
+    });
+
+  });
+}
 
 function convertObjectToCsv(object) {
   return Object.keys(object)
