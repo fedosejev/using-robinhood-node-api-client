@@ -71,16 +71,16 @@ function getOrders(config, callback) {
       
         var results = body.results;
 
-        var results = [
-          {
-            test: 1,
-            instrument: 'https://api.robinhood.com/instruments/438867e8-77aa-4bce-b342-46d2f1620223/'
-          },
-          {
-            test: 2,
-            instrument: 'https://api.robinhood.com/instruments/438867e8-77aa-4bce-b342-46d2f1620223/'
-          }
-        ];
+        // var results = [
+        //   {
+        //     test: 1,
+        //     instrument: 'https://api.robinhood.com/instruments/438867e8-77aa-4bce-b342-46d2f1620223/'
+        //   },
+        //   {
+        //     test: 2,
+        //     instrument: 'https://api.robinhood.com/instruments/438867e8-77aa-4bce-b342-46d2f1620223/'
+        //   }
+        // ];
 
         Rx.Observable
         .from(results)
