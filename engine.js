@@ -73,6 +73,7 @@ function getOrders(config, callback) {
         var results = body.results;
 
         if (! results) {
+          console.log('🔥  No results.');
           callback(null, null);
           return;
         }
