@@ -8,6 +8,8 @@ Get Robinhood orders, convert them to CSV and write them to a file.
 npm install
 ```
 
+_Optional:_ put your Robinhood username and password to `./robinhood.config.json` file.
+
 ## 2. Run
 
 ```
