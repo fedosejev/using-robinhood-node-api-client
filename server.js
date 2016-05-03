@@ -27,7 +27,21 @@ router
       password: request.body.password
     };
 
-    engine.getOrders(config, function (orders) {
+    engine.getOrders(config, function (error, orders) {
+      if (error) {
+        response.status(500).json({
+          message: error
+        });
+        return;
+      }
+
+      if (! orders) {
+        response.status(404).json({
+          message: 'No data found'
+        });
+        return;
+      }
+
       response.status(200).json(orders);
     });
   });

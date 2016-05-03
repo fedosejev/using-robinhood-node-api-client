@@ -66,10 +66,16 @@ function getOrders(config, callback) {
       robinhood.orders(function handleResponse(error, response, body) {
         if (error) {
           console.error(error);
+          callback(error);
           process.exit(1);
         }
       
         var results = body.results;
+
+        if (! results) {
+          callback(null, null);
+          return;
+        }
 
         // var results = [
         //   {
@@ -88,7 +94,7 @@ function getOrders(config, callback) {
         .toArray()
         .subscribe(function (data) {
           console.log('🔥  Got orders!');
-          callback(data);
+          callback(null, data);
         });
       });
 
@@ -164,7 +170,19 @@ function parseData(data) {
 
 function createCsvFile() {
   getConfig(function (config) {
-    getOrders(config, parseData);
+    getOrders(config, function (error, data) {
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      if (! data) {
+        console.log('👉  No data.');
+        return;
+      }
+
+      parseData(data);
+    });
   });
 }
 
