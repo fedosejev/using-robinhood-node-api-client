@@ -22,7 +22,6 @@ node app
 
 Set port in `./server.config.json` file and run:
 
-
 ```
 node server
 ```
