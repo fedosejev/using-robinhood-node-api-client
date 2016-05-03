@@ -12,15 +12,15 @@ _Optional:_ put your Robinhood username and password to `./robinhood.config.json
 
 ## 2. Run
 
-#### To create CSV file with orders
+#### Create CSV file with orders
 
 ```
 node app
 ```
 
-#### To start a server
+#### Start server
 
-Configure `./server.config.json` and run:
+Set port in `./server.config.json` file and run:
 
 
 ```
